@@ -5,6 +5,10 @@ cd "$(dirname "${BASH_SOURCE[0]}")" || exit 1
 source "./utils.sh"
 
 main() {
+  declare -A TMUX_OPTS=(
+    ["@pass-copy-to-clipboard"]=$(get_tmux_option "@pass-copy-to-clipboard" "off")
+  )
+
 	local IFS=$'\n'
 	local prefix="${PASSWORD_STORE_DIR:-$HOME/.password-store}"
 
@@ -12,7 +16,7 @@ main() {
 
 	password=$(pass show "$key")
 
-  if [[ "${TMUX_OPTS[@bw-copy-to-clipboard]}" == "on" ]]; then
+  if [[ "${TMUX_OPTS[@pass-copy-to-clipboard]}" == "on" ]]; then
     cp_to_clipboard "$password"
   else
     # Send the password in the last pane.

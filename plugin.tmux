@@ -19,7 +19,7 @@ main() {
 		fi
 	done
 
-	key_binding=$(get_tmux_option "@bw-key" "p")
+	key_binding=$(get_tmux_option "@pass-key" "p")
 	tmux bind "$key_binding" split-window -l 10 "$CURRENT_DIR/scripts/main.sh"
 }
 
