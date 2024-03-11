@@ -29,7 +29,7 @@ get_tmux_option() {
 	local default_value="$2"
 	local option_value
 
-	option_value=$(tmux show-option -gv "$option")
+	option_value=$(tmux show-option -gv "$option" &>/dev/null)
 
 	if [[ -z "$option_value" ]]; then
 		echo "$default_value"
